@@ -48,7 +48,9 @@
                 </td>
 
                 <td>
-                    
+                    @foreach ($post->platforms as $platform)
+                        <img src="{{$platform->icon}}" alt="" class="mr-2" width="20px">
+                    @endforeach
                 </td>
 
                 <td>
