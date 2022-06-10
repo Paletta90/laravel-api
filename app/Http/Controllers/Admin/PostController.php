@@ -88,7 +88,10 @@ class PostController extends Controller
     public function edit(Post $post)
     {
         $categories = Category::all();
-        return view('admin.posts.edit', compact('post', 'categories'));
+        $platforms = Platform::all();
+        $posts_platform_id = $post -> platforms->pluck('id')->toArray();
+
+        return view('admin.posts.edit', compact('post', 'categories', 'platforms', 'posts_platform_id'));
     }
 
     /**
@@ -110,8 +113,12 @@ class PostController extends Controller
         );
         
         $data = $request->all();
+
         $post['slug'] = Str::slug($post->title, '-');
         $post -> update($data);
+
+        if( array_key_exists( 'platforms', $data ) ) $post -> platforms() -> sync($data['platforms']);
+        else $post -> platforms() -> detach();
 
         return redirect() -> route('admin.posts.index') -> with('message', "Hai modificato con successo il post di <span class='font-italic'>$post->firm</span>");
     }
