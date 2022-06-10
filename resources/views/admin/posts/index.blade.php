@@ -8,7 +8,7 @@
         {!!session('message')!!}
     </div>
     @endif
-
+    
     <a href="{{ route('admin.posts.create') }}" class="btn btn-success mb-3">New Post</a>
 
     <table class="table table-dark">
