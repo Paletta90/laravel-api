@@ -18,6 +18,7 @@
                 <th scope="col">Category</th>
                 <th scope="col">Content</th>
                 <th scope="col">Image</th>
+                <th scope="col">Platforms</th>
                 <th scope="col">Firm</th>
                 <th scope="col">Actions</th>
             </tr>
@@ -44,6 +45,10 @@
 
                 <td>
                     <img src="{{ $post->image }}" alt="" width="50px">
+                </td>
+
+                <td>
+                    
                 </td>
 
                 <td>

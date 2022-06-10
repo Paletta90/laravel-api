@@ -58,6 +58,17 @@
     </div>
 
     <div class="form-group">
+
+        @foreach ($platforms as $platform)
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" id="checkbox-{{$platform->name}}" name="platforms[]" value="{{ $platform->id }}">
+            <label class="form-check-label" for="checkbox-{{$platform->name}}">{{ $platform->name }}</label>
+        </div>
+        @endforeach
+
+    </div>
+
+    <div class="form-group">
         <label for="firm">Firm</label>
         <input type="text" class="form-control" id="firm" name="firm" placeholder="Firm" value="{{ old('firm') }}">
     </div>

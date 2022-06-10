@@ -8,6 +8,7 @@ use Illuminate\Support\Str;
 
 use App\Models\Post;
 use App\Models\Category;
+use App\Models\Platform;
 
 class PostController extends Controller
 {
@@ -31,7 +32,9 @@ class PostController extends Controller
     public function create()
     {
         $categories = Category::all();
-        return view('admin.posts.create', compact('categories'));
+        $platforms = Platform::all();
+        
+        return view('admin.posts.create', compact('categories', 'platforms'));
     }
 
     /**
@@ -52,10 +55,15 @@ class PostController extends Controller
         );
 
         $data = $request->all();
+
         $post = new Post();
+
         $post -> fill($data);
         $post -> slug = Str::slug($post->title, '-');
+        
         $post -> save();
+        
+        $post -> platforms() -> attach($data['platforms']);
 
         return redirect() -> route('admin.posts.index') -> with('message', "Hai creato con successo il post di <span class='font-italic'>$post->firm</span>");
     }
