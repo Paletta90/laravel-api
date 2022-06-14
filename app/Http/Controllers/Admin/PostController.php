@@ -6,10 +6,14 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Auth;
 
 use App\Models\Post;
 use App\Models\Category;
 use App\Models\Platform;
+use App\Mail\SendEditMail;
+use App\Mail\SendCreateMail;
 
 class PostController extends Controller
 {
@@ -54,20 +58,34 @@ class PostController extends Controller
                 'firm' => 'required',
             ]
         );
+        // Recupero dati user loggato
+        $user = Auth::user();
 
+        // Reucpero dati form
         $data = $request->all();
+        // dd($data);
 
+        // Se è stata caricata un immagine...
         if( array_key_exists('image', $data) ){
             $img_path = Storage::put('post_images', $data['image']);
             $data['image'] = $img_path;
         }
 
         $post = new Post();
+
+        // Riempio i campi della tabella posts
         $post -> fill($data);
         $post -> slug = Str::slug($post->title, '-');
+
+        // Salvo i dati
         $post -> save();
         
+        // Se presenti delle piattaforme allora riprendo i rispettivi campi
         if( array_key_exists( 'platforms', $data ) ) $post -> platforms() -> attach($data['platforms']);
+
+        // Invio email
+        $new_email = new SendCreateMail($post);
+        Mail::to($user->email)->send($new_email);
 
         return redirect() -> route('admin.posts.index') -> with('message', "Hai creato con successo il post di <span class='font-italic'>$post->firm</span>");
     }
@@ -115,15 +133,30 @@ class PostController extends Controller
                 'firm' => 'required',
             ]
         );
-        
+        // Recupero dati user loggato
+        $user = Auth::user();
+
+        // Recupero dati del form
         $data = $request->all();
 
-        $post['slug'] = Str::slug($post->title, '-');
-        $post -> update($data);
+        if( array_key_exists('image', $data) ){
+            if($post->image) Storage::delete($post->image);
+            $img_path = Storage::put('post_images', $data['image']);
+            $data['image'] = $img_path;
+        }
 
+        $post['slug'] = Str::slug($post->title, '-');
+
+        // Aggiorno i dati
+        $post -> update($data);
+        
         if( array_key_exists( 'platforms', $data ) ) $post -> platforms() -> sync($data['platforms']);
         else $post -> platforms() -> detach();
-
+        
+        // Invio email
+        $new_email = new SendEditMail($post);
+        Mail::to($user->email)->send($new_email);
+        
         return redirect() -> route('admin.posts.index') -> with('message', "Hai modificato con successo il post di <span class='font-italic'>$post->firm</span>");
     }
 
