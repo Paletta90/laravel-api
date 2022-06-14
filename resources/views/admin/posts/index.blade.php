@@ -44,7 +44,7 @@
                 </td>
 
                 <td>
-                    <img src="{{ $post->image }}" alt="" width="50px">
+                    <img src="{{ asset('storage/' . $post->image) }}" alt="" width="50px">
                 </td>
 
                 <td>

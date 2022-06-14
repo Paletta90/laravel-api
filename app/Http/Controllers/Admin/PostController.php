@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
 
 use App\Models\Post;
 use App\Models\Category;
@@ -20,7 +21,7 @@ class PostController extends Controller
     public function index()
     {
         // $posts = Post::all();
-        $posts = Post::orderBy('updated_at', 'DESC') -> paginate(4);
+        $posts = Post::orderBy('updated_at', 'DESC')->paginate(5);
 
         return view('admin.posts.index', compact('posts'));
     }
@@ -56,14 +57,17 @@ class PostController extends Controller
 
         $data = $request->all();
 
-        $post = new Post();
+        if( array_key_exists('image', $data) ){
+            $img_path = Storage::put('post_images', $data['image']);
+            $data['image'] = $img_path;
+        }
 
+        $post = new Post();
         $post -> fill($data);
         $post -> slug = Str::slug($post->title, '-');
-        
         $post -> save();
         
-        $post -> platforms() -> attach($data['platforms']);
+        if( array_key_exists( 'platforms', $data ) ) $post -> platforms() -> attach($data['platforms']);
 
         return redirect() -> route('admin.posts.index') -> with('message', "Hai creato con successo il post di <span class='font-italic'>$post->firm</span>");
     }

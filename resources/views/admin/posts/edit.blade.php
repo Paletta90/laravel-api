@@ -43,8 +43,7 @@
 
     <div class="form-group">
         <label for="image">Image</label>
-        <input type="text" class="form-control" id="image" name="image" placeholder="Url image"
-            value="{{ old('image', $post->image) }}">
+        <input type="file" class="form-control-file" id="image" name="image" placeholder="Url image">
     </div>
 
     <div class="form-group">

@@ -2,7 +2,9 @@
 
 @section('content')
 <div class="card w-50 m-auto">
-    <div class="card-body">
+    <div class="card-body text-center">
+
+        <img class="card-img-top" src="{{ asset('storage/' . $post->image) }}" alt="Card image cap">
 
         <h5 class="card-title">{{ $post -> title }}</h5>
 

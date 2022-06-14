@@ -6,7 +6,7 @@
     @include('includes.validationErrors')
 </div>
 
-<form class="w-25 m-auto" action="{{ route('admin.posts.store') }}" method="POST">
+<form class="w-25 m-auto" action="{{ route('admin.posts.store') }}" method="POST" enctype="multipart/form-data">
 
     @csrf
 
@@ -42,7 +42,7 @@
 
     <div class="form-group">
         <label for="image">Image</label>
-        <input type="text" class="form-control" id="image" name="image" placeholder="Url image" value="{{ old('image') }}">
+        <input type="file" class="form-control-file" id="image" name="image" placeholder="Url image">
     </div>
 
     <div class="form-group">
