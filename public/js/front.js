@@ -2004,7 +2004,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'ListPosts',
@@ -2593,8 +2592,68 @@ render._withStripped = true
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function () {}
+var render = function () {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("div", { staticClass: "container" }, [
+      _c(
+        "div",
+        { staticClass: "row" },
+        _vm._l(_vm.posts, function (post) {
+          return _c("div", { key: post.id, staticClass: "col-3" }, [
+            _c("div", { staticClass: "card" }, [
+              _c(
+                "div",
+                { staticClass: "card-body" },
+                [
+                  _c("h5", { staticClass: "card-title" }, [
+                    _vm._v("Titolo: " + _vm._s(post.title)),
+                  ]),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "card-text" }, [
+                    _vm._v("Test: " + _vm._s(post.content)),
+                  ]),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "card-text" }, [
+                    _vm._v("Categoria: " + _vm._s(post.category.name)),
+                  ]),
+                  _vm._v(" "),
+                  _vm._l(post.platforms, function (platform) {
+                    return _c(
+                      "div",
+                      { key: platform.id, staticClass: "d-flex mr-1" },
+                      [
+                        _c("img", {
+                          attrs: { src: platform.icon, alt: "", width: "20px" },
+                        }),
+                      ]
+                    )
+                  }),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "card-text font-italic" }, [
+                    _vm._v("Firma: " + _vm._s(post.firm)),
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "a",
+                    { staticClass: "btn btn-primary", attrs: { href: "#" } },
+                    [_vm._v("Go somewhere")]
+                  ),
+                ],
+                2
+              ),
+            ]),
+          ])
+        }),
+        0
+      ),
+    ]),
+  ])
+}
 var staticRenderFns = []
+render._withStripped = true
 
 
 

@@ -10,14 +10,13 @@
 
                     <div class="card">
                         <div class="card-body">
-                            <!-- <h5 class="card-title">Titolo: {{ post.title }}</h5>
+                            <h5 class="card-title">Titolo: {{ post.title }}</h5>
                             <p class="card-text">Test: {{ post.content }}</p>
-                            <p class="card-text">Categoria: {{ post.category.name }}</p> -->
-                            <div v-for="platform in post.platforms" :key="platform.id">
-                            <!-- <img src="https://cdn2.iconfinder.com/data/icons/social-media-2285/512/1_Facebook_colored_svg_copy-512.png" alt="" width="20px"> -->
-                                <img :src="{{ platform.icon }}" alt="">
+                            <p class="card-text">Categoria: {{ post.category.name }}</p>
+                            <div class="d-flex mr-1" v-for="platform in post.platforms" :key="platform.id">
+                                <img :src="platform.icon" alt="" width="20px">
                             </div>
-                            <!-- <p class="card-text font-italic">Firma: {{ post.firm }}</p> -->
+                            <p class="card-text font-italic">Firma: {{ post.firm }}</p>
                             <a href="#" class="btn btn-primary">Go somewhere</a>
                         </div>
                     </div>
