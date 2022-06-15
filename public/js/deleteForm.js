@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 1);
+/******/ 	return __webpack_require__(__webpack_require__.s = 2);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -104,14 +104,14 @@ deleteForm.forEach(function (form) {
 
 /***/ }),
 
-/***/ 1:
+/***/ 2:
 /*!******************************************!*\
   !*** multi ./resources/js/deleteForm.js ***!
   \******************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\david\Desktop\Boolean\Esercizi\50 - Laravel Many to many\laravel-one-to-many\resources\js\deleteForm.js */"./resources/js/deleteForm.js");
+module.exports = __webpack_require__(/*! C:\Users\david\Desktop\Boolean\Esercizi\51 - Laravel Api\laravel-many-to-many\resources\js\deleteForm.js */"./resources/js/deleteForm.js");
 
 
 /***/ })
