@@ -17,7 +17,6 @@
 <body>
     <div class="content">
         <div id="root">
-            ciao
         </div>
     </div>
 

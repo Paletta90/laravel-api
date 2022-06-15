@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+use App\Models\Post;
+
 class PostController extends Controller
 {
     /**
@@ -14,7 +16,8 @@ class PostController extends Controller
      */
     public function index()
     {
-        return view('guest.home');
+        $posts = Post::orderBy('updated_at', 'DESC')->with('Category', 'platforms')->get();
+        return response()->json( compact('posts') );
     }
 
     /**
