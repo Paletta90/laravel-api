@@ -6,7 +6,7 @@
     @include('includes.validationErrors')
 </div>
 
-<form class="w-25 m-auto" action="{{ route('admin.posts.update', $post->id) }}" method="POST">
+<form class="w-25 m-auto" action="{{ route('admin.posts.update', $post->id) }}" method="POST" enctype="multipart/form-data">
 
     @csrf
     @method('PUT')

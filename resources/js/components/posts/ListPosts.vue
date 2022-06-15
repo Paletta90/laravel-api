@@ -15,7 +15,7 @@
                             <p class="card-text">Categoria: {{ post.category.name }}</p> -->
                             <div v-for="platform in post.platforms" :key="platform.id">
                             <!-- <img src="https://cdn2.iconfinder.com/data/icons/social-media-2285/512/1_Facebook_colored_svg_copy-512.png" alt="" width="20px"> -->
-                                <img :src="require(platform.icon)" alt="">
+                                <img :src="{{ platform.icon }}" alt="">
                             </div>
                             <!-- <p class="card-text font-italic">Firma: {{ post.firm }}</p> -->
                             <a href="#" class="btn btn-primary">Go somewhere</a>
