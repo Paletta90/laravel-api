@@ -10,7 +10,7 @@
 
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title">Titoloo: {{ post.title }}</h5>
+                            <h5 class="card-title">Titolo: {{ post.title }}</h5>
                             <p class="card-text">Test: {{ post.content }}</p>
                             <p class="card-text">Categoria: {{ post.category.name }}</p>
                             <div class="d-flex mr-1" v-for="platform in post.platforms" :key="platform.id">
